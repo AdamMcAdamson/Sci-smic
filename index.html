@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <meta property="og:image" content="resources/fp_icon.jpg" />
+        <!-- <meta property="og:image" content="resources/fp_icon.jpg" /> -->
         <meta property="og:description" content="A WebGL implementation of the Encom Boardroom visualization in Tron: Legacy" />
         <title>Encom Globe</title>
 
@@ -25,6 +25,9 @@
         <!-- ref:js build/encom-globe.min.js -->
         <script src="js/encom-globe.js"></script>
         <!-- endref -->
+
+        <!-- Sci-smic script -->
+        <script src="js/script.js"></script>
 
         <script>
 
@@ -125,51 +128,59 @@
 
                     animate();
 
-                    /* add pins at random locations */
-                    setInterval(function(){
-                        if(!globe || !$("#globe-dd:checked").length){
-                            return;
-                        }
+                    // /* add pins at random locations */
+                    // setInterval(function(){
+                    //     if(!globe || !$("#globe-dd:checked").length){
+                    //         return;
+                    //     }
                         
-                        var lat = Math.random() * 180 - 90,
-                           lon = Math.random() * 360 - 180,
-                           name = "Test " + Math.floor(Math.random() * 100);
+                    //     var lat = Math.random() * 180 - 90,
+                    //        lon = Math.random() * 360 - 180,
+                    //        name = "Test " + Math.floor(Math.random() * 100);
 
-                        globe.addPin(lat,lon, name);
+                    //     globe.addPin(lat,lon, name);
 
-                    }, 5000);
+                    // }, 5000);
                 }
                 
                 /* add 6 satellites in random locations */
 
-                if($("#globe-dd:checked").length){
-                    setTimeout(function(){
-                        var constellation = [];
-                        var opts = {
-                            coreColor: $("#satellite-color").val(),
-                            numWaves: parseInt($("#globe-si").val())
-                        };
-                        var alt =  parseFloat($("#globe-sa").val());
+                // if($("#globe-dd:checked").length){
+                //     setTimeout(function(){
+                //         var constellation = [];
+                //         var opts = {
+                //             coreColor: $("#satellite-color").val(),
+                //             numWaves: parseInt($("#globe-si").val())
+                //         };
+                //         var alt =  parseFloat($("#globe-sa").val());
 
-                        for(var i = 0; i< 2; i++){
-                            for(var j = 0; j< 3; j++){
-                                 constellation.push({
-                                    lat: 50 * i - 30 + 15 * Math.random(), 
-                                     lon: 120 * j - 120 + 30 * i, 
-                                     altitude: alt
-                                     });
-                            }
-                        }
+                //         for(var i = 0; i< 2; i++){
+                //             for(var j = 0; j< 3; j++){
+                //                  constellation.push({
+                //                     lat: 50 * i - 30 + 15 * Math.random(), 
+                //                      lon: 120 * j - 120 + 30 * i, 
+                //                      altitude: alt
+                //                      });
+                //             }
+                //         }
 
-                        globe.addConstellation(constellation, opts);
-                    }, 4000);
+                //         globe.addConstellation(constellation, opts);
+                //     }, 4000);
 
-                    /* add the connected points that are in the movie */
-                    setTimeout(function(){
-                        globe.addMarker(49.25, -123.1, "Vancouver");
-                        globe.addMarker(35.6895, 129.69171, "Tokyo", true);
-                    }, 2000);
-                }
+                //     /* add the connected points that are in the movie */
+                //     setTimeout(function(){
+                //         globe.addMarker(49.25, -123.1, "Vancouver");
+                //         globe.addMarker(35.6895, 129.69171, "Tokyo", true);
+                //     }, 2000);
+                // }
+                
+                apiQuery();
+                // data = apiQuery();
+                // var count = data.metadata.count > 100 ? 100: data.metadata.count;
+                // console.log("count: " + count);
+                // for(let i = 0; i < count; i++){
+                //     globe.addPin(data.features[i].geometry.coordinates[0], data.features[i].geometry.coordinates[1], data.features[i].properties.title);
+                // }
 
             }
 
@@ -411,7 +422,7 @@
             <div id="options">
                 <div id="options-content">
                     <h3>Add element by clicking map below</h3>
-                    <img class="projection" src="resources/point_picker.png" width= "280px"/>
+                    <!-- <img class="projection" src="resources/point_picker.png" width= "280px"/> -->
                     <ul id = "add-element">
                         <li id="add-pin" class="button selected">Drop Pin</li>
                         <li id="add-marker" class="button">Marker</li>
@@ -505,7 +516,7 @@
                 <div class="header-right-section">SYS | O12</div>
             </div>
             <div id="thumbprint">
-                <img src="resources/thumbprint.png" />
+                <!-- <img src="resources/thumbprint.png" /> -->
             </div>
             <!-- probably should remove these and have them created in the script-->
             <div class="header-animator" id="header-animator-inside"></div>
